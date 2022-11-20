@@ -5,7 +5,7 @@ P1="${DRIVE}p1"
 P2="${DRIVE}p2"
 P3="${DRIVE}p3"
 
-SWAP_GiB=$2 + 1
+SWAP_GiB=$(($2 + 1)
 
 SWAP_STR="${SWAP_GiB}GiB"
 
@@ -40,4 +40,5 @@ mount -o subvol=home,compress-force=zstd,noatime "${P3}" /mnt/home
 
 nixos-generate-config --root /mnt
 
+cp -f ./configuration.nix.bak /mnt/etc/nixos/configuration.nix
 nixos-install
