@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -10,6 +6,11 @@
       ./hardware-configuration.nix
     ];
 
+  nix = { 
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
+  };
+  
   boot = { 
     kernelPackages = pkgs.linuxPackages_latest;
     loader = { 
@@ -52,6 +53,11 @@
       enable = true;
       layout = "us";
       libinput.enable = true;
+      desktopManager = { 
+        xfce.enable = true;
+	xterm.enable = true;
+      };
+      displayManager.defaultSession = "xfce";
     };
   };
 
@@ -64,14 +70,15 @@
   # };
 
   environment.systemPackages = with pkgs; [
-    neovim 
-    wget
     git
+    wget
+    neovim 
+    firefox
+    alacritty
   ];
 
   users.users.greglaurent = { 
     isNormalUser = true;
-    initialPassword = "password123";
     home = "/home/greglaurent";
     extraGroups = [ "wheel" "networkmanager" ];
   };
