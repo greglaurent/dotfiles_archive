@@ -34,7 +34,7 @@
   time.timeZone = "America/Los_Angeles";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -77,12 +77,6 @@
     firefox
     alacritty
   ];
-
-  users.users.greglaurent = { 
-    isNormalUser = true;
-    home = "/home/greglaurent";
-    extraGroups = [ "wheel" "networkmanager" ];
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

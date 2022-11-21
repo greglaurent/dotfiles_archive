@@ -28,7 +28,13 @@
 	      home-manager.useUserPackages = true;
 	      home-manager.users.greglaurent = { 
 	        home.stateVersion = "22.05";
+		home.packages = with pkgs; [ htop ]; 
 	        imports = [ ./home.nix ];
+	      };
+
+	      users.users.greglaurent = { 
+		isNormalUser = true;
+                extraGroups = [ "wheel" "networkmanager" ];
 	      };
 	    }
 	  ];

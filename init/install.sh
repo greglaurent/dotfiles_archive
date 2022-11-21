@@ -14,12 +14,12 @@ parted "${DRIVE}" -- mkpart ESP fat32 1MiB 1GiB
 parted "${DRIVE}" -- set 1 boot on
 mkfs.vfat "${P1}"
 
-parted "${DRIVE}" -- mkpart SWAP linux-swap 1GiB "${SWAP_STR}"
+parted "${DRIVE}" -- mkpart swap linux-swap 1GiB "${SWAP_STR}"
 mkswap -L SWAP "${P2}"
 swapon "${P2}"
 
-parted "${DRIVE}" -- mkpart ROOT "${SWAP_STR}" 100%
-mkfs.btrfs -L ROOT "${P3}"
+parted "${DRIVE}" -- mkpart nixos "${SWAP_STR}" 100%
+mkfs.btrfs -L nixos "${P3}"
 
 mount "${P3}" /mnt
 btrfs subvolume create /mnt/nix
