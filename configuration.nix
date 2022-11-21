@@ -52,11 +52,6 @@
       enable = true;
       layout = "us";
       libinput.enable = true;
-      desktopManager = { 
-        xfce.enable = true;
-	xterm.enable = treu;
-      };
-      displayManager.defaultSession = "xfce";
     };
   };
 
@@ -69,14 +64,15 @@
   # };
 
   environment.systemPackages = with pkgs; [
-    vim 
+    neovim 
     wget
     git
   ];
 
-  users.users.tmpUser = { 
+  users.users.greglaurent = { 
     isNormalUser = true;
-    home = "/home/tmpUser";
+    initialPassword = "password123";
+    home = "/home/greglaurent";
     extraGroups = [ "wheel" "networkmanager" ];
   };
 
