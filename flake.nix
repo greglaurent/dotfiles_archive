@@ -40,18 +40,5 @@
 	  ];
 	};
       };
-      homeManagerConfigurations = { 
-        laptop = { 
-	  home-manager.lib.homeMangerConfiguration = {
-	    inherit system pkgs;
-	    stateVersion = "22.05";
-	    username = "greglaurent";
-	    homeDirectory = "/home/greglaurent";
-	    configuration = {
-              imports = [ ./home.nix ];
-	    };
-	  };
-	};
-      };
     };
 }
