@@ -28,7 +28,7 @@
 	      home-manager.useUserPackages = true;
 	      home-manager.users.greglaurent = { 
 	        home.stateVersion = "22.05";
-	        imports = [ ];
+	        imports = [ ./home.nix ];
 	      };
 	    }
 	  ];
