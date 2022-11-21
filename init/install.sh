@@ -10,7 +10,7 @@ SWAP_GiB=$(($2 + 1)
 SWAP_STR="${SWAP_GiB}GiB"
 
 parted "${DRIVE}" -- mklabel GPT
-parted "${DRIVE}" -- mkpart ESP fat32 1MiB 1GiB
+parted "${DRIVE}" -- mkpart esp fat32 1MiB 1GiB
 parted "${DRIVE}" -- set 1 boot on
 mkfs.vfat "${P1}"
 
@@ -40,5 +40,4 @@ mount -o subvol=home,compress-force=zstd,noatime "${P3}" /mnt/home
 
 nixos-generate-config --root /mnt
 
-cp -f ./configuration.nix.bak /mnt/etc/nixos/configuration.nix
 nixos-install
