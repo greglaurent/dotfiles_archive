@@ -5,17 +5,21 @@ P1="${DRIVE}p1"
 P2="${DRIVE}p2"
 P3="${DRIVE}p3"
 
-SWAP_GiB=$(($2 + 1)
+SWAP_GiB=$(($2 + 1))
 
 SWAP_STR="${SWAP_GiB}GiB"
 
-parted "${DRIVE}" -- mklabel GPT
-parted "${DRIVE}" -- mkpart esp fat32 1MiB 1GiB
+wipefs -af "${DRIVE}"
+
+shred -v "${DRIVE}"
+
+parted "${DRIVE}" -- mklabel boot
+parted "${DRIVE}" -- mkpart boot fat32 1MiB 1GiB
 parted "${DRIVE}" -- set 1 boot on
 mkfs.vfat "${P1}"
 
 parted "${DRIVE}" -- mkpart swap linux-swap 1GiB "${SWAP_STR}"
-mkswap -L SWAP "${P2}"
+mkswap -L swap "${P2}"
 swapon "${P2}"
 
 parted "${DRIVE}" -- mkpart nixos "${SWAP_STR}" 100%
